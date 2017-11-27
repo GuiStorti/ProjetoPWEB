@@ -1,0 +1,233 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+	
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroVendedor.title']}" />
+	</ui:define>
+	
+
+	<ui:define name="principal">
+	  
+	  <h1><p:outputLabel value="#{msg['pages.cadastroVendedor.menu']}"/></h1>
+	  
+	  <h:form id="formVendedor">	
+	  <p:panelGrid columns="2">
+	  
+	  <p:outputLabel value="#{msg['pages.cadastroVendedor.cpf']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.cpf}"/>
+	  
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.nome']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.nome}"/>
+      
+      
+	  <p:outputLabel value="#{msg['pages.cadastroVendedor.endereco']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.endereco}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.cidade']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.cidade}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.cep']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.cep}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.uf']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.uf}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.ddd']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.ddd}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.telefone']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.telefone}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroVendedor.salarioBase']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.salarioBase}"/>
+      
+         <p:outputLabel value="#{msg['pages.cadastroVendedor.comissao']}" />
+      <p:inputText value="#{vendedorManagedBean.vendedor.comissao}"/>
+
+	  </p:panelGrid>
+	  <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+	                 action="#{vendedorManagedBean.salvar}"
+	                 update=":formVendedor, :formTableVendedor:tabelaVendedor"
+	                 />
+       </h:form>
+
+   <br/>
+   
+   
+   <h3><p:outputLabel value="#{msg['pages.cadastroVendedor.tableTitle']}" /> </h3>
+   <h:form id="formTableVendedor">
+   
+    <p:dataTable
+                value="#{vendedorManagedBean.vendedores}"
+                var="aux"
+                id="tabelaVendedor"
+            
+                editable="true"
+            
+                paginator="true"
+                rows="5"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15"
+                
+                emptyMessage="#{msg['pages.cadastroVendedor.filterMSG']}"
+                
+   >
+      
+      <p:ajax event="rowEdit" listener="#{vendedorManagedBean.onRowEdit}" update="tabelaVendedor" />
+      
+      <p:column headerText="#{msg['pages.cadastroVendedor.cpf']}" filterBy="#{aux.cpf}">
+        <p:outputLabel value="#{aux.cpf}" />
+      </p:column>
+      
+      
+      
+      <p:column headerText="#{msg['pages.cadastroVendedor.nome']}" filterBy="#{aux.nome}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.nome}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorNome" value="#{aux.nome}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+    
+        <p:column headerText="#{msg['pages.cadastroVendedor.endereco']}" filterBy="#{aux.endereco}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.endereco}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorEndereco" value="#{aux.endereco}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+    
+    <p:column headerText="#{msg['pages.cadastroVendedor.cidade']}" filterBy="#{aux.cidade}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.cidade}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorCidade" value="#{aux.cidade}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroVendedor.cep']}" filterBy="#{aux.cep}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.cep}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorCep" value="#{aux.cep}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+     
+     <p:column headerText="#{msg['pages.cadastroVendedor.uf']}" filterBy="#{aux.uf}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.uf}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorUf" value="#{aux.uf}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroVendedor.ddd']}" filterBy="#{aux.ddd}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.ddd}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorDdd" value="#{aux.ddd}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroVendedor.telefone']}" filterBy="#{aux.telefone}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.telefone}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorTelefone" value="#{aux.telefone}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroVendedor.salarioBase']}" filterBy="#{aux.salarioBase}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.salarioBase}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorSalarioBase" value="#{aux.salarioBase}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroVendedor.comissao']}" filterBy="#{aux.comissao}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.comissao}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="vendedorComissao" value="#{aux.comissao}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+      
+      <p:column style="width:70px" headerText="#{msg['pages.cadastroVendedor.optionTable']}">
+					
+					<p:rowEditor />
+					
+					<p:commandLink id="remover" styleClass="ui-icon ui-icon-trash"
+						style="text-align:center"
+						actionListener="#{vendedorManagedBean.remover(aux)}"
+						update="tabelaVendedor" />
+	  </p:column>
+
+      
+      
+   </p:dataTable>	
+
+	</h:form>
+
+	
+   	   
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+

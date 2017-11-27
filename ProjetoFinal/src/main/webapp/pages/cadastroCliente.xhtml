@@ -1,0 +1,233 @@
+
+<ui:composition template="templateMenu.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui2="http://java.sun.com/jsf/facelets"
+	xmlns:tm="http://java.sun.com/jsf/composite/terminal/1_0/components">
+	
+	<ui:define name="title">
+		<h:outputText value="#{msg['pages.cadastroCliente.title']}" />
+	</ui:define>
+	
+
+	<ui:define name="principal">
+	  
+	  <h1><p:outputLabel value="#{msg['pages.cadastroCliente.menu']}"/></h1>
+	  
+	  <h:form id="formCliente">	
+	  <p:panelGrid columns="2">
+	  
+	  <p:outputLabel value="#{msg['pages.cadastroCliente.cpf']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.cpf}"/>
+	  
+      <p:outputLabel value="#{msg['pages.cadastroCliente.nome']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.nome}"/>
+      
+      
+	  <p:outputLabel value="#{msg['pages.cadastroCliente.endereco']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.endereco}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.cidade']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.cidade}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.cep']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.cep}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.uf']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.uf}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.ddd']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.ddd}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.telefone']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.telefone}"/>
+      
+      <p:outputLabel value="#{msg['pages.cadastroCliente.limiteCred']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.limiteCred}"/>
+      
+         <p:outputLabel value="#{msg['pages.cadastroCliente.limiteDisp']}" />
+      <p:inputText value="#{clienteManagedBean.cliente.limiteDisp}"/>
+
+	  </p:panelGrid>
+	  <p:commandButton value="#{msg['pages.comuns.form.btnSalvar']}" 
+	                 action="#{clienteManagedBean.salvar}"
+	                 update=":formCliente, :formTableCliente:tabelaCliente"
+	                 />
+       </h:form>
+
+   <br/>
+   
+   
+   <h3><p:outputLabel value="#{msg['pages.cadastroCliente.tableTitle']}" /> </h3>
+   <h:form id="formTableCliente">
+   
+    <p:dataTable
+                value="#{clienteManagedBean.clientes}"
+                var="aux"
+                id="tabelaCliente"
+            
+                editable="true"
+            
+                paginator="true"
+                rows="5"
+                paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                rowsPerPageTemplate="5,10,15"
+                
+                emptyMessage="#{msg['pages.cadastroCliente.filterMSG']}"
+                
+   >
+      
+      <p:ajax event="rowEdit" listener="#{clienteManagedBean.onRowEdit}" update="tabelaCliente" />
+      
+      <p:column headerText="#{msg['pages.cadastroCliente.cpf']}" filterBy="#{aux.cpf}">
+        <p:outputLabel value="#{aux.cpf}" />
+      </p:column>
+      
+      
+      
+      <p:column headerText="#{msg['pages.cadastroCliente.nome']}" filterBy="#{aux.nome}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.nome}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteNome" value="#{aux.nome}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+    
+        <p:column headerText="#{msg['pages.cadastroCliente.endereco']}" filterBy="#{aux.endereco}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.endereco}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteEndereco" value="#{aux.endereco}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+    
+    <p:column headerText="#{msg['pages.cadastroCliente.cidade']}" filterBy="#{aux.cidade}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.cidade}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteCidade" value="#{aux.cidade}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroCliente.cep']}" filterBy="#{aux.cep}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.cep}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteCep" value="#{aux.cep}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+     
+     <p:column headerText="#{msg['pages.cadastroCliente.uf']}" filterBy="#{aux.uf}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.uf}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteUf" value="#{aux.uf}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroCliente.ddd']}" filterBy="#{aux.ddd}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.ddd}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteDdd" value="#{aux.ddd}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroCliente.telefone']}" filterBy="#{aux.telefone}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.telefone}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteTelefone" value="#{aux.telefone}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroCliente.limiteCred']}" filterBy="#{aux.limiteCred}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.limiteCred}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteLimiteCred" value="#{aux.limiteCred}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+	  
+	  <p:column headerText="#{msg['pages.cadastroCliente.limiteDisp']}" filterBy="#{aux.limiteDisp}">
+    
+    			<p:cellEditor>
+					<f:facet name="output">
+						<p:outputLabel value="#{aux.limiteDisp}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText id="clienteLimiteDisp" value="#{aux.limiteDisp}"
+							style="width:100%" />
+					</f:facet>
+				</p:cellEditor>
+	  </p:column>
+      
+      <p:column style="width:70px" headerText="#{msg['pages.cadastroCliente.optionTable']}">
+					
+					<p:rowEditor />
+					
+					<p:commandLink id="remover" styleClass="ui-icon ui-icon-trash"
+						style="text-align:center"
+						actionListener="#{clienteManagedBean.remover(aux)}"
+						update="tabelaCliente" />
+	  </p:column>
+
+      
+      
+   </p:dataTable>	
+
+	</h:form>
+
+	
+   	   
+	</ui:define>
+</ui:composition>
+
+
+
+
+
+
