@@ -29,34 +29,31 @@
 			
 			<p:outputLabel
 				value="#{msg['pages.cadastroPedido.produto.msgprod']}" />
-			<p:selectOneMenu value="#{produtoManagedBean.pedido.descricao}"
-				>
-				<f:selectItem itemValue=""
-					itemLabel="#{msg['pages.cadastroPedido.produto.msg']}" />
-				<f:selectItems value="#{produtoManagedBean.pedidos}" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.descricao}" />
+			<p:selectOneMenu value="nomeProd">
+				<f:selectItem itemValue="nomeProd"
+					itemLabel="Selecione" />
+				<f:selectItems value="#{produtoManagedBean.produtos}" var="aux"
+				itemValue="#{aux}" itemLabel="#{aux.descricao}" />
 			</p:selectOneMenu>
 		
 			
-			
 			<p:outputLabel
 				value="#{msg['pages.cadastroPedido.produto.msgcliente']}" />
-			<p:selectOneMenu value="teste" >
-				<f:selectItem itemValue=""
-					itemLabel="teste" />
-				<f:selectItems value="teste" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.descricao}" />
+			<p:selectOneMenu value="nomeCli" >
+				<f:selectItem itemValue="nomeCli"
+					itemLabel="Selecione" />
+				<f:selectItems value="#{clienteManagedBean.clientes}" var="aux"
+				itemValue="#{aux}" itemLabel="#{aux.nome}" />			
 			</p:selectOneMenu>
-			
 			
 			
 			<p:outputLabel
 				value="#{msg['pages.cadastroPedido.produto.msgvendedor']}" />
-			<p:selectOneMenu value="teste" >
-				<f:selectItem itemValue=""
-					itemLabel="teste" />
-				<f:selectItems value="teste" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.descricao}" />
+			<p:selectOneMenu value="nomeVend" >
+				<f:selectItem itemValue="nomeVende"
+					itemLabel="Selecione" />
+				<f:selectItems value="#{vendedorManagedBean.vendedores}" var="aux"
+					itemValue="#{aux}" itemLabel="#{aux.nome}" />
 			</p:selectOneMenu>
 			
 			</p:panelGrid>

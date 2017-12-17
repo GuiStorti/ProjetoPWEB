@@ -34,7 +34,6 @@ public class Cliente implements Serializable{
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
 	public String getCpf() {
 		return cpf;
 	}

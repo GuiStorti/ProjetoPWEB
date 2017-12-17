@@ -9,8 +9,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import org.primefaces.event.RowEditEvent;
 import sistema.beans.datamodel.PedidoDataModel;
+import sistema.modelos.Cliente;
+import sistema.modelos.Cliente;
 import sistema.modelos.Pedido;
 import sistema.modelos.Produto;
+import sistema.modelos.Vendedor;
 import sistema.service.PedidoService;
 
 @ManagedBean
@@ -22,6 +25,8 @@ public class PedidoManagedBean {
 	private PedidoService servico = new PedidoService();
 	private List<Pedido> pedidos;
 	private List<Produto> produtos;
+	private Cliente cliente;
+	private Vendedor vendedor;
 
 	/**
 	 * @return the pedidoSelecionado
@@ -42,10 +47,48 @@ public class PedidoManagedBean {
 		pedido = servico.salvar(pedido);
 
 		if (pedidos != null)
+			//pedido.setVendedor(vendedor);
+			pedido.setCliente(cliente);
 			pedidos.add(pedido);
 
 		pedido = new Pedido();
 
+	}
+		
+	public PedidoService getServico() {
+		return servico;
+	}
+
+	public void setServico(PedidoService servico) {
+		this.servico = servico;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	public DataModel<Pedido> getPedidos() {
@@ -87,4 +130,6 @@ public class PedidoManagedBean {
 		servico.alterar(f);
 	}
 
+	
+	
 }
