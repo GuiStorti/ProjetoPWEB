@@ -21,13 +21,17 @@
 			<p:outputLabel value="#{msg['pages.cadastroProduto.descricao']}" />
 			<p:inputText value="#{produtoManagedBean.produto.descricao}" />
 
-			
+			<p:outputLabel value="#{msg['pages.cadastroProduto.pedido.nome']}" />
+			<p:selectOneMenu value="#{produtoManagedBean.pedido}"
+				converter="converterPedido">
+				<f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProduto.pedido.msg']}" />
+				<f:selectItems value="#{produtoManagedBean.pedidos}" var="aux"
+					itemValue="#{aux}" itemLabel="#{aux.nome}" />
+			</p:selectOneMenu>
 
-			<p:outputLabel value="#{msg['pages.cadastroProduto.valorUnit']}" />
-			<p:inputText value="#{produtoManagedBean.produto.valorUnit}" />
-			
-			<p:outputLabel value="#{msg['pages.cadastroProduto.estoqueMin']}" />
-			<p:inputText value="#{produtoManagedBean.produto.estoqueMin}" />
+
+			<p:outputLabel value="#{msg['pages.cadastroProduto.valor']}" />
+			<p:inputText value="#{produtoManagedBean.produto.valor}" />
 
 
 		</p:panelGrid>
@@ -63,24 +67,30 @@
 			</p:column>
 
 
-			<p:column headerText="#{msg['pages.cadastroProduto.valorUnit']}">
-				  <p:cellEditor>
+			<p:column headerText="#{msg['pages.cadastroProduto.pedido.nome']}">
+				<p:cellEditor>
 					<f:facet name="output">
-						<p:outputLabel value="#{prod.valorUnit}" />
+						<p:outputLabel value="#{prod.pedido.nome}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="valor" value="#{prod.valorUnit}" style="width:100%" />
+						<p:selectOneMenu value="#{prod.pedido}"
+							converter="converterPedido" style="width:100%">
+							<f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProduto.pedido.msg']}" />
+							<f:selectItems value="#{produtoManagedBean.pedidos}"
+								var="aux" itemValue="#{aux}" itemLabel="#{aux.nome}" />
+						</p:selectOneMenu>
+
 					</f:facet>
 				</p:cellEditor>
 			</p:column>
-			
-			<p:column headerText="#{msg['pages.cadastroProduto.estoqueMin']}">
+
+			<p:column headerText="#{msg['pages.cadastroProduto.valor']}">
 				  <p:cellEditor>
 					<f:facet name="output">
-						<p:outputLabel value="#{prod.estoqueMin}" />
+						<p:outputLabel value="#{prod.valor}" />
 					</f:facet>
 					<f:facet name="input">
-						<p:inputText id="estoqueMin" value="#{prod.estoqueMin}" style="width:100%" />
+						<p:inputText id="valor" value="#{prod.valor}" style="width:100%" />
 					</f:facet>
 				</p:cellEditor>
 			</p:column>

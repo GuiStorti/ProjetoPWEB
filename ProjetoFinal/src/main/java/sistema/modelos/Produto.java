@@ -16,59 +16,39 @@ public class Produto implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long codigo;
+	private long codigo;
 	private String descricao;
-	private double valorUnit;
-	private int estoqueMin;
-	private int qtdeDisponivel;
+	private double valor;
 	
-		
-	public Long getCodigo() {
+	@ManyToOne
+	private Pedido pedido;
+	
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+	public long getCodigo() {
 		return codigo;
 	}
-
-	public void setCodigo(Long codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
-
 	public String getDescricao() {
 		return descricao;
 	}
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public double getValorUnit() {
-		return valorUnit;
+	public double getValor() {
+		return valor;
 	}
-
-	public void setValorUnit(double valorUnit) {
-		this.valorUnit = valorUnit;
-	}
-
-	public int getEstoqueMin() {
-		return estoqueMin;
-	}
-
-	public void setEstoqueMin(int estoqueMin) {
-		this.estoqueMin = estoqueMin;
-	}
-
-	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 	
-
-	public int getQtdeDisponivel() {
-		return qtdeDisponivel;
-	}
-
-	public void setQtdeDisponivel(int qtdeDisponivel) {
-		this.qtdeDisponivel = qtdeDisponivel;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +56,7 @@ public class Produto implements Serializable{
 		result = prime * result + (int) (codigo ^ (codigo >>> 32));
 		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
 		long temp;
-		temp = Double.doubleToLongBits(valorUnit);
+		temp = Double.doubleToLongBits(valor);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -97,7 +77,7 @@ public class Produto implements Serializable{
 				return false;
 		} else if (!descricao.equals(other.descricao))
 			return false;
-		if (Double.doubleToLongBits(valorUnit) != Double.doubleToLongBits(other.valorUnit))
+		if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
 			return false;
 		return true;
 	}

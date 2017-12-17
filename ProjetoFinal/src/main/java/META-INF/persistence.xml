@@ -4,6 +4,7 @@
 		<class>sistema.modelos.Produto</class>
 		<class>sistema.modelos.Cliente</class>
 		<class>sistema.modelos.Vendedor</class>
+		<class>sistema.modelos.Pedido</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample;create=true"/>
 			<property name="javax.persistence.jdbc.user" value="user"/>
