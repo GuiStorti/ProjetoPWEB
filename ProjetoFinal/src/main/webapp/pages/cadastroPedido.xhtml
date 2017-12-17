@@ -50,7 +50,7 @@
 				value="#{msg['pages.cadastroPedido.produto.msgvendedor']}" />
 			<p:selectOneMenu value="#{pedidoManagedBean.vendedor}" converter="converterVendedor">
 				<f:selectItem itemValue="" itemLabel="Selecione" />
-				<f:selectItems value="#{clienteManagedBean.vendedores}" var="aux"
+				<f:selectItems value="#{vendedorManagedBean.vendedores}" var="aux"
 				itemValue="#{aux}" itemLabel="#{aux.nome}" />			
 			</p:selectOneMenu>
 			
