@@ -29,7 +29,7 @@
 			
 			<p:outputLabel
 				value="#{msg['pages.cadastroPedido.produto.msgprod']}" />
-			<p:selectOneMenu value="nomeProd">
+			<p:selectOneMenu value= "#{produtoManagedBean.produtos}">
 				<f:selectItem itemValue="nomeProd"
 					itemLabel="Selecione" />
 				<f:selectItems value="#{produtoManagedBean.produtos}" var="aux"
