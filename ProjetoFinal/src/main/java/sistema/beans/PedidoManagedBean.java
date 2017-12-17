@@ -27,6 +27,8 @@ public class PedidoManagedBean {
 	private List<Produto> produtos;
 	private Cliente cliente;
 	private Vendedor vendedor;
+	private List<Cliente> clientes;
+	private List<Vendedor> vendedores;
 
 	/**
 	 * @return the pedidoSelecionado
@@ -47,14 +49,31 @@ public class PedidoManagedBean {
 		pedido = servico.salvar(pedido);
 
 		if (pedidos != null)
-			//pedido.setVendedor(vendedor);
+			pedido.setVendedor(vendedor);
 			pedido.setCliente(cliente);
 			pedidos.add(pedido);
 
 		pedido = new Pedido();
 
 	}
-		
+	
+	
+	public List<Vendedor> getVendedores() {
+		return vendedores;
+	}
+
+	public void setVendedores(List<Vendedor> vendedores) {
+		this.vendedores = vendedores;
+	}
+
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public void setClientes(List<Cliente> clientes) {
+		this.clientes = clientes;
+	}
+
 	public PedidoService getServico() {
 		return servico;
 	}
