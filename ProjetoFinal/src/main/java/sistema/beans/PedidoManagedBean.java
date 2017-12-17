@@ -21,6 +21,7 @@ public class PedidoManagedBean {
 	private Pedido pedidoSelecionado;
 	private PedidoService servico = new PedidoService();
 	private List<Pedido> pedidos;
+	private List<Produto> produtos;
 
 	/**
 	 * @return the pedidoSelecionado

@@ -57,24 +57,7 @@
 				</p:cellEditor>
 			</p:column>
 
-
-			<p:column headerText="#{msg['pages.cadastroProduto.pedido.nome']}">
-				<p:cellEditor>
-					<f:facet name="output">
-						<p:outputLabel value="#{prod.pedido.nome}" />
-					</f:facet>
-					<f:facet name="input">
-						<p:selectOneMenu value="#{prod.pedido}"
-							converter="converterPedido" style="width:100%">
-							<f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProduto.pedido.msg']}" />
-							<f:selectItems value="#{produtoManagedBean.pedidos}"
-								var="aux" itemValue="#{aux}" itemLabel="#{aux.nome}" />
-						</p:selectOneMenu>
-
-					</f:facet>
-				</p:cellEditor>
-			</p:column>
-
+			
 			<p:column headerText="#{msg['pages.cadastroProduto.valor']}">
 				  <p:cellEditor>
 					<f:facet name="output">

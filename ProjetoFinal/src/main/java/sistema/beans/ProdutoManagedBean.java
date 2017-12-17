@@ -17,9 +17,7 @@ import sistema.service.ProdutoService;
 @ViewScoped
 public class ProdutoManagedBean  implements Serializable{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private Produto produto = new Produto();
 	private Pedido pedido;
@@ -28,17 +26,13 @@ public class ProdutoManagedBean  implements Serializable{
 	private List<Produto> produtos;
 
 	public void salvar() {
-		pedido.addProduto(produto);
-		produto.setPedido(pedido);
-
+		//pedido.addProduto(produto);
 		produto = prodService.salvar(produto);
 
 		if (produtos != null)
 			produtos.add(produto);
 
 		produto = new Produto();
-		pedido = null;
-
 	}
 
 	public List<Pedido> getPedidos() {

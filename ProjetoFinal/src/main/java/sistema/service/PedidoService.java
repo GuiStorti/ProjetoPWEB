@@ -32,7 +32,7 @@ public class PedidoService {
 		pedidoDAO.closeEntityManager();
 
 	}
-
+	
 	public void remover(Pedido pedido) {
 
 		pedido = pedidoDAO.getById(Pedido.class, pedido.getCodigo());
