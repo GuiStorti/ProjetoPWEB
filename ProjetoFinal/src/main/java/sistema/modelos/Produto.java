@@ -22,7 +22,7 @@ public class Produto implements Serializable{
 	private String descricao;
 	private double valor;
 	
-	@ManyToMany
+	@ManyToMany (mappedBy="produtos", cascade=CascadeType.ALL)
 	private List<Pedido> pedidos = new ArrayList<Pedido>();
 	
 	public List<Pedido> getPedidos() {

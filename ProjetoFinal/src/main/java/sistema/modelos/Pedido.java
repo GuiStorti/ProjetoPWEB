@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -21,7 +23,7 @@ public class Pedido implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long codigo;
-	private String descricao;
+
 	
 	@ManyToOne
 	private Cliente cliente;
@@ -29,13 +31,15 @@ public class Pedido implements Serializable{
 	@ManyToOne
 	private Vendedor vendedor;
 	
-	@ManyToMany(mappedBy="pedidos")
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="Item_Pedido",
+	joinColumns={@JoinColumn(name="pedido_id")},
+	inverseJoinColumns={@JoinColumn(name="produto_id")})
 	private List<Produto> produtos = new ArrayList<Produto>();
 	
-	public Pedido(long codigo, String descricao) {
+	public Pedido(long codigo) {
 		super();
 		this.codigo = codigo;
-		this.descricao = descricao;
 	}
 	
 	public Pedido() {
@@ -47,12 +51,7 @@ public class Pedido implements Serializable{
 	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
-	public String getNome() {
-		return descricao;
-	}
-	public void setNome(String descricao) {
-		this.descricao = descricao;
-	}
+	
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
@@ -66,17 +65,6 @@ public class Pedido implements Serializable{
 		
 	}
 	
-	
-	
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -98,14 +86,6 @@ public class Pedido implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -114,18 +94,13 @@ public class Pedido implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Pedido other = (Pedido) obj;
-		if (descricao == null) {
-			if (other.descricao != null)
-				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
 		return true;
 	}
 
 	
 	@Override
 	public String toString() {
-		return "Pedido [codigo=" + codigo + ", descricao=" + descricao + "]";
+		return "Pedido [codigo=" + codigo + "]";
 	}
 
 	
