@@ -21,15 +21,6 @@
 			<p:outputLabel value="#{msg['pages.cadastroProduto.descricao']}" />
 			<p:inputText value="#{produtoManagedBean.produto.descricao}" />
 
-			<p:outputLabel value="#{msg['pages.cadastroProduto.pedido.nome']}" />
-			<p:selectOneMenu value="#{produtoManagedBean.pedido}"
-				converter="converterPedido">
-				<f:selectItem itemValue="" itemLabel="#{msg['pages.cadastroProduto.pedido.msg']}" />
-				<f:selectItems value="#{produtoManagedBean.pedidos}" var="aux"
-					itemValue="#{aux}" itemLabel="#{aux.nome}" />
-			</p:selectOneMenu>
-
-
 			<p:outputLabel value="#{msg['pages.cadastroProduto.valor']}" />
 			<p:inputText value="#{produtoManagedBean.produto.valor}" />
 

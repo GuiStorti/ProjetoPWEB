@@ -1,13 +1,15 @@
 package sistema.modelos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Produto implements Serializable{
@@ -20,15 +22,17 @@ public class Produto implements Serializable{
 	private String descricao;
 	private double valor;
 	
-	@ManyToOne
-	private Pedido pedido;
+	@ManyToMany
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 	
-	
-	public Pedido getPedido() {
-		return pedido;
+	public List<Pedido> getPedidos() {
+		return pedidos;
 	}
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public long getCodigo() {
 		return codigo;

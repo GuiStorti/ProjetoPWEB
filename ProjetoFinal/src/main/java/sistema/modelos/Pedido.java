@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -22,17 +23,14 @@ public class Pedido implements Serializable{
 	private long codigo;
 	private String descricao;
 	
+	@ManyToOne
 	private Cliente cliente;
+	
+	@ManyToOne
 	private Vendedor vendedor;
 	
-	@OneToMany(mappedBy="pedido")
+	@ManyToMany(mappedBy="pedidos")
 	private List<Produto> produtos = new ArrayList<Produto>();
-	
-
-	//@ManyToMany(mappedBy="pedidos")
-	//private List<Representante> representantes = new ArrayList<Representante>();
-	
-	
 	
 	public Pedido(long codigo, String descricao) {
 		super();
